@@ -78,7 +78,7 @@
                         </div>
 
                         <div class="form-group">
-                            <button class="btn btn-success form-control" onclick="register()">Register</button>
+                            <button class="btn btn-success form-control" onclick="signup()">Signup</button>
                         </div>
                     </form>
                 </div>
@@ -96,8 +96,8 @@ function login(form){
   form.submit();
 }
 
-function register(){
-  window.location = "/register";
+function signup(){
+  window.location = "/signup";
 }
 
 </script>

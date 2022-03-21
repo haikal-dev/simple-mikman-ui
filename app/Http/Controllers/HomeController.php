@@ -54,7 +54,7 @@ class HomeController extends Controller
         }
     }
 
-    public function register(Request $request){
+    public function signup(Request $request){
         $mikman = new Mikman();
 
         return view('register')

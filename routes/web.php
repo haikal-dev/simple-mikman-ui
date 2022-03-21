@@ -20,6 +20,6 @@ Route::prefix('/')->group(function(){
     Route::get('', [Home::class, 'index']);
     Route::post('', [Home::class, 'login']);
 
-    Route::get('register', [Home::class, 'register']);
+    Route::get('signup', [Home::class, 'signup']);
 });
 
