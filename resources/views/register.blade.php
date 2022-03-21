@@ -48,7 +48,7 @@
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h3 align="center">Simple Mikman UI</h3>
-                    <p align="center">Signup</p>
+                    <p align="center">Sign Up An Account</p>
                 </div>
                 <div class="panel-body">
                     @if(isset($error))
