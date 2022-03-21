@@ -76,7 +76,14 @@
                         <div class="form-group">
                             <input class="btn btn-primary form-control" type="submit" name="btn" value="Login" />
                         </div>
+
+                        <div class="form-group">
+                            <button class="btn btn-success form-control" onclick="register()">Register</button>
+                        </div>
                     </form>
+                </div>
+                <div class="panel-footer text-center">
+                  {{ $title }} {{ $version }}
                 </div>
             </div>
         </div>
@@ -87,6 +94,10 @@
 function login(form){
   form.btn.disabled = true;
   form.submit();
+}
+
+function register(){
+  window.location = "/register";
 }
 
 </script>
