@@ -45,6 +45,12 @@ class HomeController extends Controller
                 ->with('version', $mikman->version)
                 ->with('error', $user->response->message);
             }
+
+            else {
+                $request->session()->put($user->response->userid);
+                
+                return redirect('/');
+            }
         }
     }
 }
