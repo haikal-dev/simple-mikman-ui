@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 class MikmanUser
 {
     protected $table = 'mikman_users';
-    protected $response;
+    public $response;
 
     public function __construct(){
 
@@ -23,7 +23,7 @@ class MikmanUser
         
         // not exists!
         if(!$this->exists($username)){
-            $this->response->message = "This " . $username . " was not exist in the system.";
+            $this->response->message = $username . " was not exist in the system.";
         }
 
         // if exist, perform authentication
@@ -39,5 +39,15 @@ class MikmanUser
         }
 
         return $this->response->status;
+    }
+
+    public function exists($username){
+        $user = DB::table($this->table)->where('username', $username)->first();
+
+        if(isset($user->id)){
+            return true;
+        }
+
+        return false;
     }
 }

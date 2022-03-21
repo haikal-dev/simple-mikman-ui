@@ -50,8 +50,17 @@
                     <h3 align="center">Simple Mikman UI</h3>
                 </div>
                 <div class="panel-body">
+                    @if(isset($error))
+                    
+                    <div class="alert alert-danger text-center">{{ $error }}</div>
+
+                    @else
+
                     <div class="alert alert-info text-center">Authentication is required to access this page</div>
-                    <form class="form" onsubmit="return login(this)">
+
+                    @endif
+                    
+                    <form method="post" action="{{ env('APP_URL') }}" class="form" onsubmit="return login(this)">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         
                         <div class="form-group">
@@ -73,6 +82,13 @@
         </div>
     </div>
 </div>
+<script>
+  
+function login(form){
+  form.btn.disabled = true;
+  form.submit();
+}
 
+</script>
 </body>
 </html>
