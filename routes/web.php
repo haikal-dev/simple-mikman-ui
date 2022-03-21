@@ -17,3 +17,4 @@ use App\Http\Controllers\HomeController as Home;
 */
 
 Route::get('/', [Home::class, 'index']);
+Route::post('/', [Home::class, 'login']);
