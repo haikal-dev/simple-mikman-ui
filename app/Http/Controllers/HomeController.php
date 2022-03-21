@@ -13,14 +13,14 @@ class HomeController extends Controller
 
         if(!$request->session()->has($mikman->sessionName)){
             return view('login')
-            ->with('title', $mikman->appName)
-            ->with('version', $mikman->version);
+                ->with('title', $mikman->appName)
+                ->with('version', $mikman->version);
         }
 
         else {
             return view('index')
-            ->with('title', $mikman->appName)
-            ->with('version', $mikman->version);
+                ->with('title', $mikman->appName)
+                ->with('version', $mikman->version);
         }
     }
 
@@ -30,9 +30,9 @@ class HomeController extends Controller
 
         if(!$request->has('username', 'password')){
             return view('login')
-            ->with('title', $mikman->appName)
-            ->with('version', $mikman->version)
-            ->with('error', "Username & password are required!");
+                ->with('title', $mikman->appName)
+                ->with('version', $mikman->version)
+                ->with('error', "Username & password are required!");
         }
 
         else {
@@ -41,9 +41,9 @@ class HomeController extends Controller
                 $request->get('password')
             )){
                 return view('login')
-                ->with('title', $mikman->appName)
-                ->with('version', $mikman->version)
-                ->with('error', $user->response->message);
+                    ->with('title', $mikman->appName)
+                    ->with('version', $mikman->version)
+                    ->with('error', $user->response->message);
             }
 
             else {
@@ -52,5 +52,13 @@ class HomeController extends Controller
                 return redirect('/');
             }
         }
+    }
+
+    public function register(Request $request){
+        $mikman = new Mikman();
+
+        return view('register')
+            ->with('title', $mikman->appName)
+            ->with('version', $mikman->version);
     }
 }

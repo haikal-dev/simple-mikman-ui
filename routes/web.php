@@ -15,6 +15,11 @@ use App\Http\Controllers\HomeController as Home;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::prefix('/')->group(function(){
+    
+    Route::get('', [Home::class, 'index']);
+    Route::post('', [Home::class, 'login']);
 
-Route::get('/', [Home::class, 'index']);
-Route::post('/', [Home::class, 'login']);
+    Route::get('register', [Home::class, 'register']);
+});
+
