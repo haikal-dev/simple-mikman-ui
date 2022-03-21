@@ -22,4 +22,8 @@ class HomeController extends Controller
             ->with('version', $mikman->version);
         }
     }
+
+    public function login(Request $request){
+        //
+    }
 }
