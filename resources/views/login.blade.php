@@ -23,7 +23,7 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li class="active"><a href="{{ env('APP_URL') }}">Home</a></li>
-        <li class="dropdown">
+        <!-- <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="#">Page 1-1</a></li>
@@ -32,20 +32,46 @@
           </ul>
         </li>
         <li><a href="#">Page 2</a></li>
-        <li><a href="#">Page 3</a></li>
+        <li><a href="#">Page 3</a></li> -->
       </ul>
-      <ul class="nav navbar-nav navbar-right">
+      <!-- <ul class="nav navbar-nav navbar-right">
         <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
         <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-      </ul>
+      </ul> -->
     </div>
   </div>
 </nav>
   
 <div class="container">
-  <h3>Collapsible Navbar</h3>
-  <p>In this example, the navigation bar is hidden on small screens and replaced by a button in the top right corner (try to re-size this window).
-  <p>Only when the button is clicked, the navigation bar will be displayed.</p>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 align="center">Simple Mikman UI</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="alert alert-info text-center">Authentication is required to access this page</div>
+                    <form class="form" onsubmit="return login(this)">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        
+                        <div class="form-group">
+                            <label>Username</label>
+                            <input class="form-control" type="text" name="username" placeholder="Enter username" required />
+                        </div>
+
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input class="form-control" type="password" name="password" placeholder="Enter password" required />
+                        </div>
+
+                        <div class="form-group">
+                            <input class="btn btn-primary form-control" type="submit" name="btn" value="Login" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 </body>
