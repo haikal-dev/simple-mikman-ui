@@ -78,11 +78,7 @@
                         </div>
 
                         <div class="form-group">
-<<<<<<< HEAD
                             <button class="btn btn-success form-control" onclick="signup()">Signup</button>
-=======
-                            <button class="btn btn-success form-control" onclick="register()">Register</button>
->>>>>>> develop
                         </div>
                     </form>
                 </div>
