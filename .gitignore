@@ -13,3 +13,7 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
+
+# serve.sh - allow to run development server on http://0.0.0.0:8000
+serve.sh
+
