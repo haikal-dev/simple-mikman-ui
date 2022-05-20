@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class MikmanUser
 {
-    protected $table = 'mikman_users';
+    protected $table = 'accounts';
     public $response;
 
     public function __construct(){
@@ -39,6 +40,15 @@ class MikmanUser
         }
 
         return $this->response->status;
+    }
+
+    public function register($username, $password){
+        return DB::table($this->table)->insert([
+            'username' => $username,
+            'password' => Hash::make($password),
+            'created_at' => time(),
+            'logged_in_at' => '0'
+        ]);
     }
 
     public function exists($username){

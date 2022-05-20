@@ -4,9 +4,29 @@
   <title>{{ $title }} {{ $version }}</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="{{ env('APP_URL') }}/bootstrapcdn/bootstrap-3.4.1.min.css">
+  <script src="{{ env('APP_URL') }}/bootstrapcdn/jquery-3.5.1.min.js"></script>
+  <script src="{{ env('APP_URL') }}/bootstrapcdn/bootstrap-3.4.1.min.js"></script>
+  <style>
+    .wp-siteLoader {
+            width: 2rem;
+            height: 2rem;
+            border: 5px solid #f3f3f3;
+            border-top: 6px solid #9c41f2;
+            border-radius: 100%;
+            margin: auto;
+            visibility: visible;
+            animation: spin 1s infinite linear;
+        }
+        @keyframes    spin {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+  </style>
 </head>
 <body>
 
@@ -56,26 +76,38 @@
                     <div class="alert alert-danger text-center">{{ $error }}</div>
 
                     @endif
+
+                    @if(isset($success))
                     
-                    <form method="post" action="{{ env('APP_URL') }}" class="form" onsubmit="return login(this)">
+                    <div class="alert alert-success text-center">{{ $success }}</div>
+
+                    @endif
+                    
+                    <form method="post" action="{{ env('APP_URL') }}/signup" class="form" onsubmit="return register(this)">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         
                         <div class="form-group">
                             <label>Username</label>
-                            <input class="form-control" type="text" name="username" placeholder="Enter username" required />
+                            <input class="form-control" type="text" name="username" placeholder="Enter your username" required />
                         </div>
 
                         <div class="form-group">
-                            <label>Password</label>
-                            <input class="form-control" type="password" name="password" placeholder="Enter password" required />
+                            <label>New Password</label>
+                            <input class="form-control" type="password" name="password" placeholder="Enter your new password" required />
                         </div>
 
                         <div class="form-group">
-                            <input class="btn btn-primary form-control" type="submit" name="btn" value="Login" />
+                            <label>Retype New Password</label>
+                            <input class="form-control" type="password" name="rpassword" placeholder="Retype your new password" required />
                         </div>
 
+                        <div align="center" id="loader"></div>
+                        
                         <div class="form-group">
-                            <button class="btn btn-success form-control" onclick="register()">Register</button>
+                            <input class="btn btn-primary form-control" type="submit" name="btn" value="Register" />
+                        </div>
+                        <div class="form-group">
+                            <a class="btn btn-warning form-control" href="{{ env('APP_URL') }}/login">Back to login</a>
                         </div>
                     </form>
                 </div>
@@ -87,14 +119,20 @@
     </div>
 </div>
 <script>
-  
-function login(form){
-  form.btn.disabled = true;
-  form.submit();
+
+function loader(e){
+	var el = document.createElement('div');
+	el.className = 'wp-siteLoader';
+	el.style.margin = '10px';
+	$(e).html(el);
 }
 
-function register(){
-  window.location = "/register";
+function register(form){
+  form.btn.disabled = true;
+  loader('#loader');
+  form.submit();
+
+  return false;
 }
 
 </script>

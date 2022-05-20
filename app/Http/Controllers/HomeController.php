@@ -12,9 +12,7 @@ class HomeController extends Controller
         $mikman = new Mikman();
 
         if(!$request->session()->has($mikman->sessionName)){
-            return view('login')
-                ->with('title', $mikman->appName)
-                ->with('version', $mikman->version);
+            return redirect('/login');
         }
 
         else {
@@ -60,5 +58,57 @@ class HomeController extends Controller
         return view('register')
             ->with('title', $mikman->appName)
             ->with('version', $mikman->version);
+    }
+
+    public function confirm_signup(Request $request){
+        $mikman = new Mikman();
+
+        if(!$request->has('username', 'password', 'rpassword')){
+            return view('register')
+                ->with('title', $mikman->appName)
+                ->with('version', $mikman->version)
+                ->with('error', 'Invalid parameter');
+        }
+
+        else {
+            
+            // double check if password & rpassword are match
+            if($request->get('password') != $request->get('rpassword')){
+                return view('register')
+                    ->with('title', $mikman->appName)
+                    ->with('version', $mikman->version)
+                    ->with('error', 'Password and retype password did not match. Please double check before re-submit again.');
+            }
+
+            else {
+                // check in db if username already exist or not
+                $user = new MikmanUser();
+                if($user->exists($request->get('username'))){
+                    return view('register')
+                        ->with('title', $mikman->appName)
+                        ->with('version', $mikman->version)
+                        ->with('error', 'Username that you entered is already exists. Try something else.');
+                }
+
+                else {
+                    if(!$user->register(
+                        $request->get('username'),
+                        $request->get('password')
+                    )){
+                        return view('register')
+                            ->with('title', $mikman->appName)
+                            ->with('version', $mikman->version)
+                            ->with('error', 'This system has some glitch. Please ask developer to take a look.');
+                    }
+
+                    else {
+                        return view('register')
+                            ->with('title', $mikman->appName)
+                            ->with('version', $mikman->version)
+                            ->with('success', 'Well done! Please go to login area to log in with your new account!');
+                    }
+                }
+            }
+        }
     }
 }

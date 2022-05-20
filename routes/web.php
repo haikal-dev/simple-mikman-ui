@@ -18,8 +18,10 @@ use App\Http\Controllers\HomeController as Home;
 Route::prefix('/')->group(function(){
     
     Route::get('', [Home::class, 'index']);
-    Route::post('', [Home::class, 'login']);
+    Route::get('login', [Home::class, 'login']);
+    Route::post('login', [Home::class, 'login']);
 
     Route::get('signup', [Home::class, 'signup']);
+    Route::post('signup', [Home::class, 'confirm_signup']);
 });
 
