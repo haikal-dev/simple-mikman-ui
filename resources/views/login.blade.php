@@ -60,7 +60,7 @@
 
                     @endif
                     
-                    <form method="post" action="{{ env('APP_URL') }}" class="form" onsubmit="return login(this)">
+                    <form method="post" action="{{ env('APP_URL') }}/login" class="form" onsubmit="return login(this)">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         
                         <div class="form-group">
