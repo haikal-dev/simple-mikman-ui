@@ -10,13 +10,14 @@ class HomeController extends Controller
 {
     public function index(Request $request){
         $mikman = new Mikman();
+		$user = new MikmanUser();
 
         if(!$request->session()->has($mikman->sessionName)){
             return redirect('/login');
         }
 
         else {
-			$user = $mikman->loadUser($request->session()->get($mikman->sessionName));
+			$user = $user->loadUser($request->session()->get($mikman->sessionName));
 
             return view('index')
                 ->with('title', $mikman->appName)
