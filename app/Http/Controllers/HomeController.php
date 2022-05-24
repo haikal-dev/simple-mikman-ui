@@ -45,7 +45,7 @@ class HomeController extends Controller
             }
 
             else {
-                $request->session()->put($user->response->userid);
+                $request->session()->put($mikman->sessionName, $user->response->userid);
                 
                 return redirect('/');
             }
