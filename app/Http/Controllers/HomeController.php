@@ -18,7 +18,8 @@ class HomeController extends Controller
         else {
             return view('index')
                 ->with('title', $mikman->appName)
-                ->with('version', $mikman->version);
+                ->with('version', $mikman->version)
+				->with('userid', $request->session()->get($mikman->sessionName));
         }
     }
 	
