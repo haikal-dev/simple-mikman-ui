@@ -42,7 +42,7 @@
 </nav>
   
 <div class="container">
-  <h3>Welcome, {{ $userid }} !</h3>
+  <h3>Welcome, {{ $username }} !</h3>
   <p></p>
 </div>
 

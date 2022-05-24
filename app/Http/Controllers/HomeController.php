@@ -16,10 +16,12 @@ class HomeController extends Controller
         }
 
         else {
+			$user = $mikman->loadUser($request->session()->get($mikman->sessionName));
+
             return view('index')
                 ->with('title', $mikman->appName)
                 ->with('version', $mikman->version)
-				->with('userid', $request->session()->get($mikman->sessionName));
+				->with('username', $user->username);
         }
     }
 	
@@ -52,6 +54,7 @@ class HomeController extends Controller
             }
 
             else {
+				$user->update_login_access();
                 $request->session()->put($mikman->sessionName, $user->response->userid);
                 
                 return redirect('/');
