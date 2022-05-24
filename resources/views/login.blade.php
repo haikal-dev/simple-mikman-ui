@@ -7,6 +7,26 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+    .wp-siteLoader {
+            width: 2rem;
+            height: 2rem;
+            border: 5px solid #f3f3f3;
+            border-top: 6px solid #9c41f2;
+            border-radius: 100%;
+            margin: auto;
+            visibility: visible;
+            animation: spin 1s infinite linear;
+        }
+        @keyframes    spin {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+  </style>
 </head>
 <body>
 
@@ -73,6 +93,8 @@
                             <input class="form-control" type="password" name="password" placeholder="Enter password" required />
                         </div>
 
+                        <div align="center" id="loader"></div>
+
                         <div class="form-group">
                             <input class="btn btn-primary form-control" type="submit" name="btn" value="Login" />
                         </div>
@@ -90,10 +112,20 @@
     </div>
 </div>
 <script>
+
+function loader(e){
+	var el = document.createElement('div');
+	el.className = 'wp-siteLoader';
+	el.style.margin = '10px';
+	$(e).html(el);
+}
   
 function login(form){
   form.btn.disabled = true;
+  loader('#loader');
   form.submit();
+
+  return false;
 }
 
 function signup(){
