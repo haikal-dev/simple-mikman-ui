@@ -19,6 +19,11 @@ class MikmanUser
         // define default status
         $this->response->status = false;
     }
+	
+	public function loadUser($userid){
+		$user = DB::table($this->table)->where('id', $userid)->first();
+		return $user;
+	}
 
     public function login($username, $password){
         
@@ -42,6 +47,12 @@ class MikmanUser
 
         return $this->response->status;
     }
+	
+	public function update_login_access(){
+		return DB::table($this->table)->where('id', $this->response->userid)->update([
+			'logged_in_at' => time()
+		]);
+	}
 
     public function register($username, $password){
         return DB::table($this->table)->insert([
