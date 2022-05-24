@@ -21,6 +21,12 @@ class HomeController extends Controller
                 ->with('version', $mikman->version);
         }
     }
+	
+	public function logout(Request $request){
+		$request->session()->flush();
+		
+		return redirect('/');
+	}
 
     public function login(Request $request){
         $user = new MikmanUser();

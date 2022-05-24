@@ -15,13 +15,18 @@ use App\Http\Controllers\HomeController as Home;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::prefix('/')->group(function(){
-    
-    Route::get('', [Home::class, 'index']);
-    Route::get('login', [Home::class, 'login']);
-    Route::post('login', [Home::class, 'login']);
 
-    Route::get('signup', [Home::class, 'signup']);
-    Route::post('signup', [Home::class, 'confirm_signup']);
-});
+// dashboard
+Route::get('/', [Home::class, 'index']);
+
+// login
+Route::get('/login', [Home::class, 'login']);
+Route::post('/login', [Home::class, 'login']);
+
+// logout session
+Route::get('/logout', [Home::class, 'logout']);
+
+// register
+Route::get('/signup', [Home::class, 'signup']);
+Route::post('/signup', [Home::class, 'confirm_signup']);
 
