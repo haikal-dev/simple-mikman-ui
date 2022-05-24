@@ -35,6 +35,7 @@ class MikmanUser
             }
 
             else {
+				$this->response->userid = $user->id;
                 $this->response->status = true;
             }
         }
