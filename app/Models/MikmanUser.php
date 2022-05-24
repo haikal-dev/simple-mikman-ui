@@ -30,7 +30,7 @@ class MikmanUser
         // if exist, perform authentication
         else {
             $user = DB::table($this->table)->where('username', $username)->first();
-            if($user['password'] != $password){
+            if($user->password != $password){
                 $this->response->message = "Invalid authentication.";
             }
 
