@@ -8,7 +8,7 @@ class MikmanUserController extends Controller
 {
     public $sessionName = 'mikman_userid';
     public $appName = 'Mikman';
-    public $version = 'v0.0.1-alpha2';
+    public $version = 'v0.0.1-alpha9';
 
     public function __construct(){
 
