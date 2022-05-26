@@ -43,7 +43,7 @@
   
 <div class="container">
   <h3>Welcome, {{ $username }} !</h3>
-  <p></p>
+  <p>MikroTik Manager {{ $version }}</p>
 </div>
 
 </body>
