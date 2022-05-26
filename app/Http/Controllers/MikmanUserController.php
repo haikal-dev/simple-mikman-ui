@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class MikmanUserController extends Controller
 {
     public $sessionName = 'mikman_userid';
-    public $appName = 'Mikman';
+    public $appName = 'MIKMAN';
     public $version = 'v0.0.1-alpha9';
 
     public function __construct(){
